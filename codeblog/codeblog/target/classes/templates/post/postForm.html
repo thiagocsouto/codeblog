@@ -1,0 +1,38 @@
+<html th:replace="~{base/base :: layout (~{:: main})}">
+  
+  <main>
+  <section>
+
+     <div class="container" style="width: 60%; padding-bottom: 30px">
+     
+			<nav style="-bs-breadcrumb-divider: '';" aria-label="breadcrumb">
+				<ol class="breadcrumb" style="background-color: white; padding-left: 0px">
+					<li class="breadcrumb-item"><a href="./posts">Voltar</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Novo Post</li>
+				</ol>
+			</nav>
+			
+			
+            <form method="post" action="new-post" th:object="${post}">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Título *"  th:field="*{titulo}"> 
+                </div>
+                <div class="form-group" style="margin-top: 20px">
+                    <input type="text" class="form-control" placeholder="Autor *"  th:field="*{autor}">
+                </div>
+
+                <textarea type="text" class="form-control" style="margin-top: 20px" placeholder="Texto *"  th:field="*{texto}"></textarea>
+
+                <small class="form-text text-muted">(*) Campos obrigatórios</small>
+               
+                <div class="form-group" style="margin-top: 10px">
+                  <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
+                  <a href="./posts" class="btn btn-secondary" role="button" style="margin-top: 10px;">Cancelar</a>
+                </div>
+            </form>
+        </div>
+        
+  </section>
+  </main>
+  
+</html>
