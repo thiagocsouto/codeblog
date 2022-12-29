@@ -34,7 +34,7 @@ public class codeblogServiceTests {
 		Post post = new Post();
 		post.setId(1l); 
 		post.setAutor("Teste");
-		post.setData(LocalDate.now());
+		post.setData(LocalDate.now());  
 		post.setTitulo("Teste");
 		post.setTexto("Apenas um teste.");
 		
