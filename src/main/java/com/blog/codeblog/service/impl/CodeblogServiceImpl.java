@@ -27,7 +27,7 @@ public class CodeblogServiceImpl implements CodeblogService{
 	public Post save(Post post) {
 		
 		if (post.getTexto() == null) {
-			throw new NullPointerException();
+			throw new NullPointerException("Texto não pode ter valor nulo");
 		}
 		
 		return codeblogRepository.save(post);
