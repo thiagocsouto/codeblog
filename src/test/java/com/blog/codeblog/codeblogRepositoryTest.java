@@ -1,82 +1,88 @@
 package com.blog.codeblog;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
-import org.junit.Before;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.blog.codeblog.entity.Post;
 import com.blog.codeblog.repository.CodeblogRepository;
-import com.blog.codeblog.service.CodeblogService;
+import com.blog.codeblog.service.impl.CodeblogServiceImpl;
 
-
-@ExtendWith(MockitoExtension.class)
-public class codeblogRepositoryTest {
+@SpringBootTest
+public class codeblogServiceTests {
 	
-	@Mock
+	@Autowired
 	private CodeblogRepository codeblogRepository;
 	
-	@InjectMocks
-	private CodeblogService codeblogService;
+	@Autowired
+	private CodeblogServiceImpl codeblogServiceImpl;
 	
-//	@BeforeEach
-//	void initService() {
-//		CodeblogService codeblogService = new CodeblogService(codeblogRepository);
-//	}
+	@BeforeEach
+	void initService() {
+	}
  
-//	@Test
-//	void salvarPost() {
-//	    
-//		Post post = new Post(5l , "teste", null, LocalDate.parse("2022-04-26"), "teste");
-//		doReturn(post).when(codeblogRepository).save(any());
-//		
-//		Post salvarPost = codeblogRepository.save(post);
-//		
-//		assertNotNull(salvarPost);
-//		
-//	}
+	@Test
+	void salvando_post() {
+	    
+		//formulário de um post
+		Post post = new Post();
+		post.setId(1l); 
+		post.setAutor("Teste");
+		post.setData(LocalDate.now());  
+		post.setTitulo("Teste");
+		post.setTexto("Apenas um teste.");
+		
+		//ação
+		codeblogRepository.save(post);
+		
+		//aserts
+		assertThat(post.getId()).isEqualTo(1l);
+		
+	}
 	
+	@Test
+    void error_quando_salva_post_com_texto_nulo() {
+	    
+		//formulário de um post
+		Post post = new Post();
+		post.setId(1l); 
+		post.setAutor("Teste");
+		post.setData(LocalDate.now());  
+		post.setTitulo("Teste");
+		post.setTexto(null);
+		
+		 //acao
+        Exception exception = assertThrows(Exception.class, () -> codeblogServiceImpl.save(post));
+    
+        //asserts
+        assertEquals("Texto não pode ter valor nulo", exception.getMessage());
+
+	}
 	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	@Test
-//	public void salvarPost() {	    
-//		Post post = new Post(5l , "teste", null, LocalDate.parse("2022-04-26"), "teste");
-//		when(codeblogRepository.save(any(Post.class))).thenReturn(post);
-//		
-//		Post salvarPost = codeblogService.save(post); 
-//		
-//		assertNotNull(salvarPost);
-//		
-//	}
-	
-//	@Test
-//	void salvarPost2() {
-//	    
-//		Post post = new Post(6l , "teste", "teste", LocalDate.parse("2022-04-26"), "teste");
-//		doReturn(post).when(codeblogRepository).save(any());
-//		
-//        Optional<Post> salvarPost = codeblogRepository.findById(5l);
-//		
-//		Assertions.assertTrue(salvarPost.isPresent());
-//		
-//	}
+	@Test
+	void Listando_um_post() {
+		
+		//formulário de um post
+		Post post2 = new Post();
+		post2.setId(2l); 
+		post2.setAutor("Teste2");
+		post2.setData(LocalDate.now());  
+		post2.setTitulo("Teste2");
+		post2.setTexto(null);
+		
+		//acao
+		codeblogServiceImpl.findById(2l);
+		
+		//asserts
+		assertThat(post2.getId()).isEqualTo(2l);
+		
+	}
+
 }
