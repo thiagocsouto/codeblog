@@ -1,5 +1,6 @@
 package com.blog.codeblog.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -23,12 +24,15 @@ import lombok.extern.java.Log;
 @Entity
 @Table(name="post")
 @Data
-public class Post {
-	
+@AllArgsConstructor
+public class Post implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	         
 	@Column(name="título")
 	@NotBlank
 	private String titulo;

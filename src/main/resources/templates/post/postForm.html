@@ -12,7 +12,6 @@
 				</ol>
 			</nav>
 			
-			
             <form method="post" action="./new-post" th:object="${post}">
                 <div class="form-group">
                     <input  th:errorclass="is-invalid" type="text" class="form-control" placeholder="Título *"  th:field="*{titulo}"> 
@@ -22,11 +21,11 @@
                 <div class="form-group" style="margin-top: 20px">
                     <input  th:errorclass="is-invalid" type="text" class="form-control" placeholder="Autor *"  th:field="*{autor}">
                     <div class="invalid-feedback" th:errors="*{autor}">
-	                 </div>
+	                 </div> 
                 </div>
  
                  <div style="margin-top: 20px">
-                <textarea th:errorclass="is-invalid" id="summernote" type="text" class="form-control" placeholder="Texto *"  th:field="*{texto}"></textarea>
+                <textarea th:errorclass="is-invalid" type="text" class="form-control" placeholder="Texto *"  th:field="*{texto}"></textarea>
                  <div class="invalid-feedback" th:errors="*{texto}">
 	                 </div>
 	             </div>
@@ -34,11 +33,12 @@
                 <small class="form-text text-muted">(*) Campos obrigatórios</small>
                
                 <div class="form-group" style="margin-top: 10px">
+                  <input type="hidden" id="id" th:field="*{id}" value=""/>
                   <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Publicar</button>
                   <a href="./posts" class="btn btn-secondary" role="button" style="margin-top: 10px;">Cancelar</a>
                 </div>
             </form>
-        </div>
+        </div>   
         
   </section>
   
