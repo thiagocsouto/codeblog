@@ -68,7 +68,7 @@ public class codeblogServiceTests {
 	
 	@Test
 	void Listando_um_post() {
-		
+		    
 		//formulário de um post
 		Post post2 = new Post();
 		post2.setId(2l); 
