@@ -1,6 +1,5 @@
 package com.blog.codeblog.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.blog.codeblog.dto.PostDto;
 import com.blog.codeblog.entity.Post;
 import com.blog.codeblog.service.CodeblogService;
 
@@ -44,20 +43,19 @@ public class CodeblogController {
 	public ModelAndView getPostForm() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName( "post/postForm");
-		mv.addObject("post", new Post());
+		mv.addObject("postDto", new PostDto(null, null, null, null, null));
 		return mv;		
 	}
 	
 	@PostMapping(value="/new-post")
-	public ModelAndView savePost(@Valid Post post, BindingResult result) {
+	public ModelAndView savePost(@Valid PostDto postDto, BindingResult result) {
 		ModelAndView mv = new ModelAndView(); 
 		if(result.hasErrors()) {
 			mv.setViewName("/post/postForm");
-			mv.addObject(post);
+			mv.addObject(postDto);
 		    return mv;
 		}
-		post.setData(LocalDate.now());
-		codeblogService.save(post);
+		codeblogService.save(postDto);
 		mv.setViewName("redirect:/posts");
 		return mv;
 	}

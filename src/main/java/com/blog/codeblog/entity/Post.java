@@ -8,23 +8,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.java.Log;
 
 @Entity
 @Table(name="post")
-@Data
-@AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Post implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -46,7 +41,5 @@ public class Post implements Serializable{
 	@Column(name="texto", length=1024)
 	private String texto;
 
-	public Post() {
-	}
 
 }

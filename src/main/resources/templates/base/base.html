@@ -19,28 +19,29 @@ xmlns:th="http://thymeleaf.org">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<base href="http://localhost:8080/codeblog/">
 </head>   
 <body>
      <header>
 		    <nav class="navbar navbar-expand-lg bg-light">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="posts">MyCodeBlog</a> 
+			    <a class="navbar-brand" href="./posts">MyCodeBlog</a> 
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			    <div class="collapse navbar-collapse" id="navbarNav">
 			      <ul class="navbar-nav">
 			        <li class="nav-item">
-			          <a class="nav-link active" aria-current="page" href="posts">Home</a>
+			          <a class="nav-link active" aria-current="page" href="./posts">Home</a>
 			        </li>
 			        <li class="nav-item">
-			          <a class="nav-link" href="#">Sobre</a>
-			        </li>
+			          <a class="nav-link" href="./posts#about">Sobre</a>
+			        </li> 
 			        <li class="nav-item">
-			          <a class="nav-link" href="#">Contato</a>
+			          <a class="nav-link" href="./posts#about">Contato</a>
 			        </li>          
 			        <li class="nav-item">
-			          <a class="nav-link disabled">Beta</a>
+			          <a class="nav-link disabled">Beta</a>        
 			        </li>
 			      </ul>    
 			    </div>

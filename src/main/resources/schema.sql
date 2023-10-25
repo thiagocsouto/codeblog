@@ -1,1 +1,1 @@
-create table post(id Long auto_increment, título varchar(60), autor varchar(60), data date, texto varchar(65535));     
+create table post(id Long auto_increment, título varchar(60), autor varchar(60), data date, texto varchar(2000));     

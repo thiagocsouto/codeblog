@@ -12,7 +12,7 @@
 				</ol>
 			</nav>
 			
-            <form method="post" action="./new-post" th:object="${post}">
+            <form method="post" action="./new-post" th:object="${postDto}">
                 <div class="form-group">
                     <input  th:errorclass="is-invalid" type="text" class="form-control" placeholder="Título *"  th:field="*{titulo}"> 
                      <div class="invalid-feedback" th:errors="*{titulo}">
